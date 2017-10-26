@@ -39,7 +39,7 @@ def register(request):
         if not errors:
             user = User.objects.create_user(request.POST)
             request.session['user_id'] = user.id
-            return redirect(reverse('dashboard'))
+            return redirect(reverse('success'))
 
         flash_errors(errors, request)
     return redirect(reverse('landing'))
@@ -52,7 +52,7 @@ def login(request):
         if 'user' in check:
             request.session['user_id'] = check['user'].id
 
-            return redirect(reverse('dashboard'))
+            return redirect(reverse('success'))
 
         flash_errors(check['errors'], request)
     return redirect(reverse('landing'))

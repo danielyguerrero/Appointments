@@ -32,7 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'apps.login',
-    'apps.pokes',
+#    'apps.pokes',    CHANGE THIS !!!
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

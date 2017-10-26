@@ -21,7 +21,14 @@ class UserManager(models.Manager):
         if form_data['password'] != form_data['password_confirmation']:
             errors.append("Passwords must match.")
 
+        if not errors:
+            user = User.objects.filter(email=form_data['email'].lower()).first()
+            if user:
+                errors.append("Email already taken")
+
         return errors
+
+
 
     def validate_login(self, form_data):
         errors = []
@@ -32,18 +39,16 @@ class UserManager(models.Manager):
         if len(form_data['password']) == 0:
             errors.append("Password is required.")
 
-        user = User.objects.filter(email=form_data['email']).first()
+        if not errors:
+            user = User.objects.filter(email=form_data['email'].lower()).first()
+            if user:
+                user_password = form_data['password'].encode()
+                db_password = user.password.encode()
 
-        if user:
-            user_password = form_data['password'].encode()
-            db_password = user.password.encode()
+                if bcrypt.checkpw(user_password, db_password):
+                    return {'user': user}
 
-            if bcrypt.checkpw(user_password, db_password):
-                return {'user': user}
-
-            errors.append("Invalid Password")
-        errors.append("Account does not exist")
-
+        errors.append("Login failed")
         return {'errors': errors}
 
     def create_user(self, form_data):
@@ -52,7 +57,7 @@ class UserManager(models.Manager):
         return User.objects.create(
             name = form_data['name'],
             alias = form_data['alias'],
-            email = form_data['email'],
+            email = form_data['email'].lower(),
             password = hashedpw,
     )
 
