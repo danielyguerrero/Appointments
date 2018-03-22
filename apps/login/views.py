@@ -27,8 +27,7 @@ def index(request):
 def quotes(request):
     user = current_user(request)
     return render(request, 'login/index.html')
-def success(request):
-    return render(request, 'login/success.html')
+
 #=====================================================================
 #                        REDIRECT FUNCTIONS
 #=====================================================================
@@ -39,7 +38,7 @@ def register(request):
         if not errors:
             user = User.objects.create_user(request.POST)
             request.session['user_id'] = user.id
-            return redirect(reverse('success'))
+            return redirect(reverse('dashboard'))
 
         flash_errors(errors, request)
     return redirect(reverse('landing'))
@@ -52,7 +51,7 @@ def login(request):
         if 'user' in check:
             request.session['user_id'] = check['user'].id
 
-            return redirect(reverse('success'))
+            return redirect(reverse('dashboard'))
 
         flash_errors(check['errors'], request)
     return redirect(reverse('landing'))

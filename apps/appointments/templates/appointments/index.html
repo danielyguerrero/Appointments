@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	 <a href="{% url 'logout' %}">Log out</a>
+
+     <h1>Welcome, {{ user.name }}!</h1>
+     
+<!--==============================  TODAYS APPOINTMENTS =====================================   -->
+<h3>Here are your appointments for today, {{ today }}</h3>
+    <table class="people" width="600" cellspacing="20" cellpadding="0">
+        <thead>
+            <tr>
+            <th>Tasks</th>
+            <th>Time</th>
+            <th>Status</th>
+            <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for appoint in today_app %}
+            <tr>
+                <td>{{ appoint.tasks }}</td>
+                <td>{{ appoint.time }}</td>
+                <td>{{ appoint.status }}</td>
+                <td> <a href="{{appoint.id}}">Edit</a>   <a href="delete/{{appoint.id}}">Delete</a> </td>
+
+            </tr>
+        {%endfor%}
+        </tbody>
+    </table>
+<hr>
+<!--==============================  FUTURE APPOINTMENTS =====================================   -->
+<h3>Your Other Appointments:</h3>
+
+<table class="people" width="600" cellspacing="10" cellpadding="0">
+    <thead>
+        <tr>
+        <th>Tasks</th>
+        <th>Date</th>
+        <th>Time</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for appoint in future_app %}
+        <tr>
+            <td>{{ appoint.tasks }}</td>
+            <td>{{ appoint.date }}</td>
+            <td>{{ appoint.time }}</td>
+        </tr>
+        {%endfor%}
+    </tbody>
+</table>
+
+<hr>
+<!--==============================  ADD APPOINTMENTS =====================================   -->
+        <h3>Add Appointment:</h3>
+
+        <form action="{% url 'create' %}" class="myform" method="post">
+
+            {% csrf_token %}
+
+			Enter a date after {{ today }}:
+  			<input type="date" name="date" min="{{today}}"><br>
+
+  			<input type="hidden" name="status" value="Pending">
+
+			Select a time:
+			<input type="time" name="time"><br>
+
+            <p>Tasks: <textarea name="tasks"></textarea></p>
+
+            <button type="submit">Add</button>
+
+        </form>
+<!--==============================  END ADD APPOINTMENTS =================================   -->
+</body>
+</html>
+
+
+
+

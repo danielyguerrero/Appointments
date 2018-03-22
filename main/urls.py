@@ -18,6 +18,6 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^', include('apps.login.urls')),
-#    url(r'^pokes/', include('apps.pokes.urls')),  CHANGE THIS
+    url(r'^appointments/', include('apps.appointments.urls')),  
 
 ]

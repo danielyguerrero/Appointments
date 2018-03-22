@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		User Page
+	</title>
+</head>
+<body>
+
+	<div>
+		<a href="{% url 'dashboard' %}">Dashboard</a>
+		<a href="{% url 'logout' %}">Logout</a>
+	</div>
+
+				
+
+        <form action="{% url 'edit' appoint_id=appointment.id %}" method="post">
+
+            {% csrf_token %}
+
+            <p>
+            	Tasks: <input name="tasks" value="{{appointment.tasks}}"></input>
+            </p>
+
+            <p>
+            	Status: <select name="status" value="{{appointment.status}}">
+					<option value="done">Done</option>
+					<option value="pending">Pending</option>
+					<option value="missed">Missed</option>
+            	</select>
+            </p>
+
+            <p>
+				Date:<input name="date" value="{{today}}" min="{{today}}"><br>
+			</p>
+
+			<p>
+				Time:<input name="time" value="{{appointment.time}}"><br>
+			</p>
+			
+
+            <button type="submit">Update</button>
+
+        </form>
+	</div>
+</body>
