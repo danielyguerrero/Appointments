@@ -1,0 +1,19 @@
+body {
+	background-color: #cbcbcb;
+	text-align: center;
+}
+h1 {
+	margin:0;
+}
+table {
+	table-layout: fixed;
+	width: 100%;
+	white-space: nowrap;
+}
+
+table td {
+	white-space:nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+
+}

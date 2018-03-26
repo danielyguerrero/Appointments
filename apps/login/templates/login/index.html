@@ -3,6 +3,8 @@
 <head>
     <title>Login and Register</title>
     {% load staticfiles %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'login/css/index.css' %}" charset="utf-8"  />
 </head>
 
 <body>
@@ -16,7 +18,7 @@
         </ul>
         {% endif %}
 
-        <h1>Welcome!</h1>
+        <h1>Welcome User!</h1>
         <form class="topform" action="{% url 'register' %}" method="post">
             {% csrf_token %}
 
@@ -53,6 +55,8 @@
             </p>
         </form>
     </div>
+    <br>
+    <p><span style="color:red">Please log in or register to set up an appointment</span></p>
 </body>
 
 </html>

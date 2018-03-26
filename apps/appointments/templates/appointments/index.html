@@ -1,16 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>Your Appointments</title>
+     {% load staticfiles %}
+     <!-- Bootstrap -->
+          <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+    <!-- CSS Link -->
+    <link rel="stylesheet" href="{% static 'appointments/css/index.css' %}" charset="utf-8"  />
 </head>
 <body>
-	 <a href="{% url 'logout' %}">Log out</a>
 
-     <h1>Welcome, {{ user.name }}!</h1>
-     
+      <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand"><h1>Welcome, {{ user.name }}!</h1></a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="{% url 'logout' %}">Log out</a></li>
+        
+        </ul>
+      </div>
+    </nav> 
 <!--==============================  TODAYS APPOINTMENTS =====================================   -->
+<br>
+<br>
 <h3>Here are your appointments for today, {{ today }}</h3>
-    <table class="people" width="600" cellspacing="20" cellpadding="0">
+    <table class="table-bordered table-hover" width="600" cellspacing="20" cellpadding="0">
         <thead>
             <tr>
             <th>Tasks</th>
@@ -25,7 +48,7 @@
                 <td>{{ appoint.tasks }}</td>
                 <td>{{ appoint.time }}</td>
                 <td>{{ appoint.status }}</td>
-                <td> <a href="{{appoint.id}}">Edit</a>   <a href="delete/{{appoint.id}}">Delete</a> </td>
+                <td> <a href="{{appoint.id}}">Edit</a> / <a href="delete/{{appoint.id}}">Delete</a> </td>
 
             </tr>
         {%endfor%}
@@ -35,12 +58,13 @@
 <!--==============================  FUTURE APPOINTMENTS =====================================   -->
 <h3>Your Other Appointments:</h3>
 
-<table class="people" width="600" cellspacing="10" cellpadding="0">
+<table class="table-bordered table-hover" width="600" cellspacing="10" cellpadding="0">
     <thead>
         <tr>
         <th>Tasks</th>
         <th>Date</th>
         <th>Time</th>
+        <th>Action</th>
         </tr>
     </thead>
     <tbody>
@@ -49,6 +73,7 @@
             <td>{{ appoint.tasks }}</td>
             <td>{{ appoint.date }}</td>
             <td>{{ appoint.time }}</td>
+            <td> <a href="{{appoint.id}}">Edit</a>   <a href="delete/{{appoint.id}}">Delete</a> </td>
         </tr>
         {%endfor%}
     </tbody>
@@ -56,7 +81,7 @@
 
 <hr>
 <!--==============================  ADD APPOINTMENTS =====================================   -->
-        <h3>Add Appointment:</h3>
+        <h3>Create an Appointment:</h3>
 
         <form action="{% url 'create' %}" class="myform" method="post">
 
