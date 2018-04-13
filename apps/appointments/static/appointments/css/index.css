@@ -1,19 +1,26 @@
 body {
-	background-color: #cbcbcb;
 	text-align: center;
+	background-color: #cbcbcb;
 }
 h1 {
 	margin:0;
 }
-table {
-	table-layout: fixed;
-	width: 100%;
-	white-space: nowrap;
+.wrapper{
+	height: auto;
+	width: 800px;
+	margin-right: auto;
+	margin-left: auto;
+	background-color: white;
+	font-size: 20px;
 }
+table{
+	margin-right: auto;
+	margin-left: auto;
 
-table td {
-	white-space:nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-
+}
+form{
+	margin: 20px;
+}
+button{
+	margin-bottom: 25px;
 }
