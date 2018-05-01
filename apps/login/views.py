@@ -24,10 +24,6 @@ def user(request, id):
 def index(request):
     return render(request, 'login/index.html')
 
-def quotes(request):
-    user = current_user(request)
-    return render(request, 'login/index.html')
-
 #=====================================================================
 #                        REDIRECT FUNCTIONS
 #=====================================================================

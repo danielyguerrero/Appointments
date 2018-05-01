@@ -2,26 +2,41 @@
 <html>
 <head>
 	<title> Edit Page </title>
-
-	 {% load staticfiles %}
-     <!-- Bootstrap -->
-
-          <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load staticfiles %}
+    <!-- Bootstrap -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <!-- Icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
     <!-- CSS Link -->
     <link rel="stylesheet" href="{% static 'appointments/css/user.css' %}" charset="utf-8"  />
-
+    <!-- jQuery Link -->
+    <script src="{% static "appointments/js/user.js" %}"></script>
 </head>
 <body>
     <!-- =========    navbar    ============ -->
+    <div class="topnav" id="myTopnav">
 
-        <nav class="navbar navbar-inverse">
+        <a class="navbar-brand" class="active"><h1 class="navbar-brand" class="active">Edit Your Appointment</h1></a>
+
+        <a href="{% url 'dashboard' %}">Dashboard</a>
+        
+        <a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-out"></span> Logout </a>
+
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+
+    </div>
+
+
+
+
+<!--         <nav class="navbar navbar-inverse">
           <div class="container-fluid">
             <div class="navbar-header">
               <a class="navbar-brand" href="{% url 'dashboard' %}">Edit Your Appointment</a>
@@ -33,7 +48,7 @@
               <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-out"></span> Logout </a></li>
             </ul>
           </div>
-        </nav> 
+        </nav>  -->
 
     <!-- =========    Form    ============ -->
 
@@ -42,7 +57,7 @@
           {% csrf_token %}
           <img src="/static/appointments/img/app.png" height="150" width="150"/ >
           <p>
-          Tasks: <input name="tasks" value="{{appointment.tasks}}"></input>
+            Tasks: <input name="tasks" value="{{appointment.tasks}}" ></input>
           </p>
 
           <p>
@@ -55,11 +70,11 @@
           </p>
 
           <p>
-          Date:<input name="date" value="{{today}}" min="{{today}}"><br>
+            Date:<input name="date" value="{{today}}" min="{{today}}"><br>
           </p>
 
           <p>
-          Time:<input name="time" value="{{appointment.time}}"><br>
+            Time:<input name="time" value="{{appointment.time}}"><br>
           </p>
 
           <button type="submit"> Update </button>
