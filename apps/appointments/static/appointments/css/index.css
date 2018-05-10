@@ -8,6 +8,7 @@ h1 {
 .wrapper{
 	height: auto;
 	width: auto;
+  padding-top: 20px;
 	max-width: 800px;
 	margin-right: auto;
 	margin-left: auto;
