@@ -14,14 +14,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
-
+    <!-- CSS Link -->
     <link rel="stylesheet" href="{% static 'login/css/index.css' %}" charset="utf-8"  />
 
 </head>
 
 <body>
-     <h1>Welcome to the Appointments App!</h1>
     <div class="wrapper">
+        <h1>Schedule your appointment today!</h1>
+        <!-- <img src="static/login/img/logo3.jpg "> -->
 
         {% if messages %}
         <ul>
@@ -31,10 +32,26 @@
         </ul>
         {% endif %}
 
+
+        <form class="rform" action="{% url 'login' %}" method="post">
+            {% csrf_token %}
+            <p>Already have an account?</p>
+            <h3>Login <i class="fa fa-unlock-alt" style="font-size:36px"></i> </h3>
+            <p>Email:</p>
+            <input type="text" name="email" />
+
+            <p>Password:</p>
+            <input type="text" name="password" />
+            <br>
+            <input type="submit" class="btn" value="Login" />
+        </form>
+
+        <img src="static/login/img/logo3.jpg ">
+
         <form class="lform" action="{% url 'register' %}" method="post">
             {% csrf_token %}
-
-            <h3>Register</h3>
+            <p>Don't have an account?</p>
+            <h3>Register  <i class="fa fa-pencil" style="font-size:36px"></i> </h3>
             <p>Name:</p>
             <input type="text" name="name" />
 
@@ -49,26 +66,12 @@
 
             <p>Confirm PW:</p>
             <input type="password" name="password_confirmation" />
-            <p class="btnpar">
-                <input type="submit" value="Register" />
-            </p>
+            <br>
+            <input type="submit" class="btn" value="Register" />
         </form>
 
-        <form class="rform" action="{% url 'login' %}" method="post">
-            {% csrf_token %}
-            <h3>Login</h3>
-            <p>Email:</p>
-            <input type="text" name="email" />
-
-            <p>Password:</p>
-            <input type="text" name="password" />
-            <p class="btnpar">
-                <input type="submit" value="Login" />
-            </p>
-        </form>
     </div>
-    <br>
-    <p><span style="color:red">Please log in or register to set up an appointment</span></p>
+    
 </body>
 
 </html>
