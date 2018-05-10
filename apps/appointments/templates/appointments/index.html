@@ -31,10 +31,9 @@
     </div>
 
 <div class="wrapper">
-    <!--==============================  TODAYS APPOINTMENTS =====================================   -->
-    <br>
-    <br>
-    <h3>Here are your appointments for today, {{ today }}</h3>
+    <!--========= TODAYS APPOINTMENTS ===================   -->
+    <div class="today">
+        <h3>Here are your appointments for today, {{ today }} <i class="fa fa-calendar" style="font-size:35px;color:#6d89f5"></i></h3>
 
         <table class="table">
             <thead class="thead-dark">
@@ -56,33 +55,36 @@
             {%endfor%}
             </tbody>
         </table>
+    </div>
     <hr>
-    <!--==============================  FUTURE APPOINTMENTS =====================================   -->
+    <img src="https://cdn.dribbble.com/users/4874/screenshots/1792443/timely_dribbble.gif" height="200" width="200">
+    <!--=========  FUTURE APPOINTMENTS =================   -->
+    <div class="future">
+        <h3>Your Other Appointments: <i class="fa fa-calendar-check-o" style="font-size:35px;color:#6d89f5"></i></h3>
 
-    <h3>Your Other Appointments:</h3>
-
-    <table class="table">
-        <thead class="thead-dark">
-            <tr>
-                <th scope="col">Tasks</th>
-                <th scope="col">Date</th>
-                <th scope="col">Time</th>
-                <th scope="col">Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for appoint in future_app %}
+        <table class="table" id="future">
+            <thead class="thead-dark">
                 <tr>
-                    <td >{{ appoint.tasks }}</td>
-                    <td>{{ appoint.date }}</td>
-                    <td>{{ appoint.time }}</td>
-                    <td> <a href="{{appoint.id}}">Edit</a>   <a href="delete/{{appoint.id}}">Delete</a> </td>
+                    <th scope="col">Tasks</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Action</th>
                 </tr>
-            {%endfor%}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                {% for appoint in future_app %}
+                    <tr>
+                        <td >{{ appoint.tasks }}</td>
+                        <td>{{ appoint.date }}</td>
+                        <td>{{ appoint.time }}</td>
+                        <td> <a href="{{appoint.id}}">Edit</a> | <a href="delete/{{appoint.id}}">Delete</a> </td>
+                    </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+    </div>
     <hr>
-    <!--==============================  ADD APPOINTMENTS =====================================   -->
+    <!--=========  ADD APPOINTMENTS ====================   -->
             <h3>Create an Appointment:</h3>
 
             <form action="{% url 'create' %}" class="myform" method="post">
